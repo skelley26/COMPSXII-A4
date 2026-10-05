@@ -217,7 +217,7 @@ void event_system_init(EventSystem* es) {
 //
 // Hint: void event_system_register(EventSystem* es, void (*callback)(int)) { ... }
 
-void event_event_system_register(EventSystem* es, void (*callback)(int)) {
+void event_system_register(EventSystem* es, void (*callback)(int)) {
     if (es->callback_count < MAX_CALLBACKS) {
         es->callbacks[es->callback_count] = callback;
         es->callback_count++;
@@ -283,22 +283,18 @@ int main() {
     // TODO: Call factorial and print result
     double result = factorial(5);
     printf("Factorial result: %.0f\n", result);
-    return 0;
 
 
     printf("\n--- Part 2: Fibonacci with Depth Tracking ---\n");
     // TODO: Call fibonacci multiple times and track max_depth
     fibonacci(5, 0);
     printf("Max recursion depth reached: %d\n", max_depth);
-    return 0;
 
     fibonacci(10, 0);
     printf("Max recursion depth reached: %d\n", max_depth);
-    return 0;
 
     fibonacci(15, 0);
     printf("Max recursion depth reached: %d\n", max_depth);
-    return 0;
     
     
     printf("\n--- Part 3: Stack Overflow Demo (comment out after testing!) ---\n");
@@ -319,13 +315,26 @@ int main() {
     // TODO: Create array and test with different callbacks
     
     int arr[] = {1, 2, 3, 4, 5};
-    
+    void (*callback)(int);
+    process_array(arr, 5, double_value);
+    process_array(arr, 5, square_value);
+    process_array(arr, 5, negate_value);
     
     printf("\n--- Part 5: Event System ---\n");
     // TODO: Initialize event system, register callbacks, trigger events
     
-    
-    
+    EventSystem events;
+    event_system_init(&events);
+
+    event_system_register(&events, on_score_update);
+    event_system_register(&events, on_level_change);
+    event_system_register(&events, on_health_change);
+
+    event_system_trigger(&events, 100);
+    event_system_trigger(&events, 2);
+    event_system_trigger(&events, 75);
+
+
     
     printf("\n=============================================================\n");
     printf("Stack exploration complete!\n");

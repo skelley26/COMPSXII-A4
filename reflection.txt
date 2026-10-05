@@ -1,0 +1,19 @@
+Stack Mechanics (150-200 words)
+    Describe what you observed when running the recursive factorial and Fibonacci functions. How did the print statements show the stack growing and shrinking?
+        The fibonacci functions seemed to go on forever, and in the case of part 3, it crashes because of stack overflow.
+    What happened when you ran the stack overflow demonstration? What error did you see?
+        The output was an insanely fast scroll of Callbacks that only stopped when I got an acception error that said "segmentation fault".
+    Based on what you learned, explain what's actually stored on the stack each time you call a function (parameters, return address, local variables).
+        Parameters are stored within the Function arguments, the return address has the instruction pointer to recall where to resume, and the local variables are where arrays and structs are held.
+Recursion Costs (100-150 words)
+    Compare the stack depth you observed for factorial versus Fibonacci with the same input value. Why does Fibonacci use more stack space?
+        Fibonacci has a lot more function calls as it's exponential, so it's plain to see that it takes a lot more memory allocation, whereas factorial does not infinitely process the same value.
+    Why does Python limit recursion depth? What would happen without that limit based on your stack overflow experience?
+        Python limits it to avoid any crashes because of stack overflow, so without that, there could be memory corruption and crashes. 
+Function Pointers and Callbacks (100-150 words)
+    Explain how function pointers enable callbacks. How does passing a function as a parameter let you write more flexible code?
+        Function pointers store a function variable so that it can be used as an argument. Continuity is a plus for flexible code, so if you can write one function and use it again and again, that is a great thing to have.
+    Give one real-world example where callback patterns are useful (GUI event handlers, signal processing, etc.).
+        GUI handlers is a great one because each click triggers something. I think of using JavaScript to listen for clicks when making a webpage, which I did for another class. 
+    Why might systems programmers use callbacks even though function pointers are less readable than direct function calls?
+        Above, we mention that passing a function as a parameter makes flexible code, and it's the same case here. Callbacks are flexible because you get to use what you already have to implement new things.
